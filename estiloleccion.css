@@ -1,11 +1,11 @@
 body {background-color: rgb(212, 92, 92);}
 header {background-color: rgb(231, 199, 68);}
-article {background-color: rgb(255, 255, 255);}
+article {background-color: azure;}
 aside {background-color: rgb(237, 192, 133);}
 .sec1 {background-color: rgb(88, 212, 226);}
 .sec2 {background-color: rgb(88, 226, 208);}
 nav {background-color: rgb(87, 216, 117);}
-footer {background-color: rgb(180, 71, 138);}
+footer {background-color: rgb(206, 119, 172);}
 
 .contenedor {
     display:grid;
