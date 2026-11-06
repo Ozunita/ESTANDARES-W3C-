@@ -1,34 +1,188 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario</title>
+
+    <style>
+        body {
+            background-color: white;
+            color: #222222;
+            font-family: Arial, sans-serif;
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        input:focus-visible,
+        textarea:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #005fcc;
+            outline-offset: 3px;
+        }
+
+        .error {
+            color: #a00000;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px;
+        }
+
+        .reiniciar {
+            background-color: brown;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-        <form name="Datos">
-        <input type="number"placeholder="ejemplo 123"><br>
-        <input type="email"placeholder="ejemplo de correo"><br>
-        <input type="text"placeholder="Erick"><br>
-        <input type="text"placeholder="Loor"><br>
-        <input type="date"placeholder="Fecha de hoy"><br>
-        <input type="url"placeholder="Link"><br>
-        <label>Que estandares conoces?</label><br>
-        <input type="checkbox" value="HTML5" checked> HTML5<br>
-        <input type="checkbox" value="CSS3"> CSS3<br>
-        <input type="checkbox" value="JavaScript"> JavaScript<br>
-        <textarea cols="15" rows="6"></textarea><br>
-        <input type="button" value="enviar la información!">
-<input type="reset"style="background-color: brown;color:white;" background:red>
- <ol>
-    <h1>Integrantes</h1>
-    <li>Jeremy Intriago</li>
-    <li>Navarrete Jostyn</li>
-    <li>Zambrano Karla</li>
- </ol>
-    </form>
-</body>
 
+    <h1>Formulario de datos</h1>
+
+    <form id="Datos" novalidate>
+
+        <label for="numero">Número:</label><br>
+        <input type="number" id="numero"
+               placeholder="Ejemplo: 123" required>
+        <p class="error" id="errorNumero"></p>
+
+        <label for="correo">Correo electrónico:</label><br>
+        <input type="email" id="correo"
+               placeholder="Ejemplo de correo" required>
+        <p class="error" id="errorCorreo"></p>
+
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre"
+               placeholder="Erick" required>
+        <p class="error" id="errorNombre"></p>
+
+        <label for="apellido">Apellido:</label><br>
+        <input type="text" id="apellido"
+               placeholder="Loor" required>
+        <p class="error" id="errorApellido"></p>
+
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" required>
+        <p class="error" id="errorFecha"></p>
+
+        <label for="enlace">Enlace web:</label><br>
+        <input type="url" id="enlace"
+               placeholder="https://ejemplo.com">
+        <p class="error" id="errorEnlace"></p>
+
+        <fieldset>
+            <legend>¿Qué estándares conoces?</legend>
+
+            <input type="checkbox" id="html5" checked>
+            <label for="html5">HTML5</label><br>
+
+            <input type="checkbox" id="css3">
+            <label for="css3">CSS3</label><br>
+
+            <input type="checkbox" id="javascript">
+            <label for="javascript">JavaScript</label>
+        </fieldset>
+
+        <label for="comentario">Comentarios:</label><br>
+        <textarea id="comentario"
+                  cols="15" rows="6"></textarea><br>
+
+        <button type="submit">
+            Enviar la información
+        </button>
+
+        <button type="reset" class="reiniciar">
+            Reiniciar
+        </button>
+
+        <p id="resultado" role="status"></p>
+
+    </form>
+
+    <h2>Integrantes</h2>
+    <ol>
+        <li>Jeremy Intriago</li>
+        <li>Navarrete Jostyn</li>
+        <li>Zambrano Karla</li>
+    </ol>
+
+    <script>
+        let formulario = document.getElementById("Datos");
+
+        let campos = [
+            ["numero", "errorNumero"],
+            ["correo", "errorCorreo"],
+            ["nombre", "errorNombre"],
+            ["apellido", "errorApellido"],
+            ["fecha", "errorFecha"],
+            ["enlace", "errorEnlace"]
+        ];
+
+        for (let campo of campos) {
+            let entrada = document.getElementById(campo[0]);
+            entrada.setAttribute("aria-describedby", campo[1]);
+        }
+
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            let correcto = true;
+            let primerError = null;
+
+            for (let campo of campos) {
+                let entrada = document.getElementById(campo[0]);
+                let mensaje = document.getElementById(campo[1]);
+
+                mensaje.textContent = "";
+                entrada.removeAttribute("aria-invalid");
+
+                if (!entrada.validity.valid) {
+                    if (entrada.validity.valueMissing) {
+                        mensaje.textContent =
+                            "Error: este campo es obligatorio.";
+                    } else {
+                        mensaje.textContent =
+                            "Error: ingrese un dato válido.";
+                    }
+
+                    entrada.setAttribute("aria-invalid", "true");
+                    correcto = false;
+
+                    if (primerError === null) {
+                        primerError = entrada;
+                    }
+                }
+            }
+
+            let resultado = document.getElementById("resultado");
+
+            if (correcto) {
+                resultado.textContent =
+                    "Formulario validado correctamente.";
+            } else {
+                resultado.textContent =
+                    "Revise los errores del formulario.";
+                primerError.focus();
+            }
+        });
+
+        formulario.addEventListener("reset", function() {
+            for (let campo of campos) {
+                document.getElementById(campo[1]).textContent = "";
+                document.getElementById(campo[0])
+                    .removeAttribute("aria-invalid");
+            }
+
+            document.getElementById("resultado").textContent = "";
+        });
+    </script>
+
+</body>
 </html>
