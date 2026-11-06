@@ -1,33 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segunda Práctica HTML</title>
+    <title>Formulario de estándares web</title>
 </head>
 
 <body>
-    <form name="Datos">
-        <input type="number" placeholder="ejemplo 123"><br>
-        <input type="email" placeholder="ejemplo de correo"><br>
-        <input type="text" placeholder="Jostyn"><br>
-        <input type="text" placeholder="Navarrete"><br>
-        <input type="date" placeholder="Fecha de hoy"><br>
-        <input type="url" placeholder="Link"><br>
-        <label>Que estándares conoces?</label><br>
-        <input type="checkbox" value="HTML5" checked> HTML5<br>
-        <input type="checkbox" value="CSS3"> CSS3<br>
-        <input type="checkbox" value="JavaScript"> JavaScript<br>
-        <textarea cols="15" rows="6"></textarea><br>
-        <input type="button" value="enviar la información!">
-        <input type="reset" style="background-color: brown;color:white;" background:red>
-        <ol>
-            <h1>Integrantes</h1>
-            <li>Navarrete Jostyn</li>
-            <li>Zambrano Karla</li>
-        </ol>
-    </form>
-</body>
+    <main>
+        <h1>Formulario de estándares web</h1>
+        <form action="#" method="get">
+            <p><label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" placeholder="ejemplo 123">
+            </p>
 
+            <p>
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="ejemplo de correo">
+            </p>
+
+  
+            <p>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Jostyn">
+            </p>
+
+            
+            <p>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Navarrete">
+            </p>
+
+          
+            <p>
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha">
+            </p>
+
+         
+            <p>
+                <label for="enlace">Enlace:</label>
+                <input type="url" id="enlace" name="enlace" placeholder="Link">
+            </p>
+
+            
+            <fieldset>
+                <legend>¿Qué estándares conoces?</legend>
+
+                <p>
+                    <input type="checkbox" id="html5" name="estandares" value="HTML5">
+                    <label for="html5">HTML5</label>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="css3" name="estandares" value="CSS3">
+                    <label for="css3">CSS3</label>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="javascript" name="estandares" value="JavaScript">
+                    <label for="javascript">JavaScript</label>
+                </p>
+            </fieldset>
+
+            
+            <p>
+                <label for="comentarios">Comentarios:</label>
+                <textarea id="comentarios" name="comentarios" rows="5" cols="30"></textarea>
+            </p>
+
+           
+            <p>
+                <button type="submit">
+                    Enviar la información
+                </button>
+
+                <button type="reset">
+                    Restablecer
+                </button>
+            </p>
+
+        </form>
+
+        <section aria-labelledby="integrantes">
+            <h2 id="integrantes">Integrantes</h2>
+
+            <ol>
+                <li>Navarrete Jostyn</li>
+                <li>Zambrano Karla</li>
+            </ol>
+        </section>
+
+    </main>
+
+</body>
 </html>
