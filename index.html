@@ -149,6 +149,19 @@
     </footer>
 
     <script src="jcodigo.js"></script>
+    <script>
+    let boton = document.getElementById("botonMenu");
+    let menu = document.getElementById("menu");
+
+    boton.addEventListener("click", function() {
+        let abierto = boton.getAttribute("aria-expanded") === "true";
+
+        boton.setAttribute("aria-expanded", String(!abierto));
+        menu.hidden = abierto;
+
+        boton.textContent = abierto ? "Abrir menú" : "Cerrar menú";
+    });
+</script>
 </body>
 
 </html>
